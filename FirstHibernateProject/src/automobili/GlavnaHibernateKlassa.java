@@ -1,10 +1,6 @@
 package automobili;
 
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-
+import controller.HibernateDAO;
 import model.Car;
 
 public class GlavnaHibernateKlassa {
@@ -12,34 +8,29 @@ public class GlavnaHibernateKlassa {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		
-		
-		
-		
-	Car car= new Car("bugatti", "veyron", 2015, 1.8, true);	
-		
-		
-		
-		
-		Session sesija = factory.openSession();
-		sesija.beginTransaction();
-		
+		HibernateDAO dao= new HibernateDAO();
 			
-		try {
-			sesija.save(car);
-			
-			sesija.getTransaction().commit(); //komit je za bazu 
-		}catch (Exception e) {
-			sesija.getTransaction().rollback();
+	 //  Car car= new Car("jaguar", "x-type", 2015, 0.1, true);	
+	//dao.snimiAutoUBazu(car);
+		
+		
+	/*	Car car= dao.vratiAuto(2);
+		//dao.updateCarPrice(car.getIdCar(),180000);
+		System.out.println ("Uzeo si auto "+ car.getMarka()+ " "+ car.getModel());
+		System.out.println (" NOVA CENA je" +car.getCena());
+		
+		*/
+		
+		if (dao.deleteCar(2)) {
+			System.out.println ("OBRISAN");
 		}
-			
+			else {
+				System.out.println ("Nije OBRISAN");
+			}
 		
-		sesija.close();
-		
-		
-		
-		
+//<!-- Echo all executed SQL to stdout -->
+//<property name="show_sql">true</property> zato ispisuje u konzoli onaj crni upit; ako nije potrebno,stavi se false u xml
 
-	}
-}
+				
+	}}

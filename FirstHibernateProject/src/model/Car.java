@@ -67,6 +67,5 @@ public class Car {
 	public void setRegistracija(boolean registracija) {
 		this.registracija = registracija;
 	}
-	
-	
+		
 }
