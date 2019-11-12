@@ -1,7 +1,11 @@
 package automobili;
 
 import controller.HibernateDAO;
+
 import model.Car;
+import model.User;
+import model.VisitCard;
+import model.VrstaVozila;
 
 public class GlavnaHibernateKlassa {
 
@@ -11,26 +15,22 @@ public class GlavnaHibernateKlassa {
 		
 		HibernateDAO dao= new HibernateDAO();
 			
-	 //  Car car= new Car("jaguar", "x-type", 2015, 0.1, true);	
-	//dao.snimiAutoUBazu(car);
+	Car car= new Car ( "land rover", "discovery", 2018,39990,false, VrstaVozila.SUV);
 		
-		
-	/*	Car car= dao.vratiAuto(2);
-		//dao.updateCarPrice(car.getIdCar(),180000);
-		System.out.println ("Uzeo si auto "+ car.getMarka()+ " "+ car.getModel());
-		System.out.println (" NOVA CENA je" +car.getCena());
-		
-		*/
-		
-		if (dao.deleteCar(2)) {
-			System.out.println ("OBRISAN");
-		}
-			else {
-				System.out.println ("Nije OBRISAN");
-			}
-		
-//<!-- Echo all executed SQL to stdout -->
-//<property name="show_sql">true</property> zato ispisuje u konzoli onaj crni upit; ako nije potrebno,stavi se false u xml
-
-				
+	
+	VisitCard visitCard= new VisitCard();
+	visitCard.setIme("ruzica");
+	visitCard.setEmail("ruza@gmail.com");
+	visitCard.setBrojTelefona("0641234567");
+	//ovo iznad ne moze da funkcionise bez embeddable~
+	
+	
+	User user = new User();
+	user.setUserName("ruza");
+	user.setPassword("ruzaprogramer123");
+	user.setNovcanik(100000);
+	
+	user.setVisitCard(visitCard);
+	dao.snimiAutoUBazu(car);
+	dao.snimiUseraUBazu(user);
 	}}

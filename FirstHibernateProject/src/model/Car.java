@@ -1,6 +1,7 @@
 package model;
 
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,26 +11,36 @@ public class Car {
 
 	
 	@Id  // means primary key and not null
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)//enum je identity
 	private int idCar;
 	private String marka;
 	private String model;
 	private int godiste;
 	private double cena;
 	private boolean registracija;
-	
+	@Enumerated //Zato sto je u vrsti vozila definisan enum
+	private VrstaVozila VrstaVozila;
 	public Car() {}
 	
-	public Car(String marka, String model, int godiste, double cena, boolean registracija) {
+	public Car(String marka, String model, int godiste, double cena, boolean registracija,VrstaVozila VrstaVozila ) {
 		this.marka=marka;
 		this.model=model;
 		this.godiste=godiste;
 		this.cena=cena;
 		this.registracija=registracija;
+		this.VrstaVozila=VrstaVozila;
 	}
 	
 	public int getIdCar() {
 		return idCar;
+	}
+
+	public VrstaVozila getVrstaVozila() {
+		return VrstaVozila;
+	}
+
+	public void setVrstaVozila(VrstaVozila vrstaVozila) {
+		VrstaVozila = vrstaVozila;
 	}
 
 	public void setIdCar(int idCar) {
