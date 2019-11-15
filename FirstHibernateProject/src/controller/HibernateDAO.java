@@ -63,6 +63,7 @@ public class HibernateDAO {
 			
 			
 			public void updateCarPrice (int id, double novaCena) {
+				//prvo se kupi objekat iz baze pa se radi onda update
 				
 				Session sesija = factory.openSession();
 				sesija.beginTransaction();
@@ -125,9 +126,36 @@ public class HibernateDAO {
 			sesija.close();
 	}}
 			
+		public  void linkujUseraIAuto (int IDCar, int IDUser) {
 		
 			
+		Session sesija = factory.openSession();
+		sesija.beginTransaction();
+		
+		try {
+			//izvuci
+			Car car=sesija.get(Car.class, IDCar);
+			User user=sesija.get(User.class, IDUser);
+			//linkuj
+			car.setKorisnik(user);
+			user.setAuto(car);
+			//apdejtuj
+			sesija.update(user);
+			sesija.update(car);
+			
+			sesija.getTransaction().commit();  
+			
+		}catch (Exception e) {
+			sesija.getTransaction().rollback();
+		}
+			
+	finally {
+	
+			sesija.close();
+	}}
+			
+		}
+			 
 			
 			
-			
-	}
+	

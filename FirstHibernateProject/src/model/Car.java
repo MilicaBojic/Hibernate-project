@@ -5,6 +5,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Car {
@@ -15,11 +16,23 @@ public class Car {
 	private int idCar;
 	private String marka;
 	private String model;
-	private int godiste;
+	private int godiste; //primitivni tip podatka Hibernate sam zna kako treba da mapira i sta u sta da pretvori
 	private double cena;
 	private boolean registracija;
 	@Enumerated //Zato sto je u vrsti vozila definisan enum
 	private VrstaVozila VrstaVozila;
+	@OneToOne
+	private User korisnik; //lombok za getere i setere
+	
+	
+	public User getKorisnik() {
+		return korisnik;
+	}
+
+	public void setKorisnik(User korisnik) {
+		this.korisnik = korisnik;
+	}
+
 	public Car() {}
 	
 	public Car(String marka, String model, int godiste, double cena, boolean registracija,VrstaVozila VrstaVozila ) {

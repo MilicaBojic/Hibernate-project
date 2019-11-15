@@ -1,8 +1,11 @@
 package model;
 
-import javax.persistence.Embeddable;
+import javax.persistence.Embeddable;//slozeni tip podatka
 
-@Embeddable    // za value object - nosi podatke ali nije entitet
+@Embeddable    // za value object - nosi podatke ali nije entitet, cim ne treba da pravimo tabelu u bazi koristi se ovo i ono nije za entitete realnog sveta
+//ako se ne stavi nece moci da ga mapira
+//cim imas slozeni tip moras da stavis anotaciju da bi on znao sta gde da mapira
+//ako nije entitet onda je embedded
 public class VisitCard {
 	
 	//value object 
