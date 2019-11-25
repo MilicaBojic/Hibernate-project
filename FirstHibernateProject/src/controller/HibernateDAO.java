@@ -131,6 +131,8 @@ public class HibernateDAO {
 			
 		Session sesija = factory.openSession();
 		sesija.beginTransaction();
+			Car car;
+  		        User user;
 		
 		try {
 			//izvuci
