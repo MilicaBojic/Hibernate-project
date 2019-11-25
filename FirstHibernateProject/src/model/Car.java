@@ -21,7 +21,7 @@ public class Car {
 	private boolean registracija;
 	@Enumerated //Zato sto je u vrsti vozila definisan enum
 	private VrstaVozila VrstaVozila;
-	@OneToOne
+	@ManyToOne
 	private User korisnik; //lombok za getere i setere
 	
 	
